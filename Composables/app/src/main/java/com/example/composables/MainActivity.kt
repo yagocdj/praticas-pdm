@@ -118,11 +118,11 @@ fun ComposeQuadrant(modifier: Modifier = Modifier) {
                     modifier = Modifier.padding(bottom = 16.dp),
                     text = stringResource(id = R.string.txt_composable_title),
                     fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Justify,
                     color = Color.Black
                 )
                 Text(
                     text = stringResource(id = R.string.txt_composable_description),
+                    textAlign = TextAlign.Justify,
                     color = Color.Black
                 )
             }
