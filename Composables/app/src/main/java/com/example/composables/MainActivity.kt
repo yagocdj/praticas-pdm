@@ -109,8 +109,8 @@ fun ComposeQuadrant(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxSize()
-                    .padding(16.dp)
-                    .background(Color(0xFFEADDFF)),
+                    .background(Color(0xFFEADDFF))
+                    .padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
@@ -128,10 +128,10 @@ fun ComposeQuadrant(modifier: Modifier = Modifier) {
             }
             Column(
                 modifier = Modifier
+                    .background(Color(0xFFD0BCFF))
                     .padding(16.dp)
                     .weight(1f)
-                    .fillMaxSize()
-                    .background(Color(0xFFD0BCFF)),
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -152,10 +152,10 @@ fun ComposeQuadrant(modifier: Modifier = Modifier) {
         Row {
             Column(
                 modifier = Modifier
+                    .background(Color(0xFFB69DF8))
                     .weight(1f)
                     .fillMaxSize()
-                    .padding(16.dp)
-                    .background(Color(0xFFB69DF8)),
+                    .padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
@@ -173,10 +173,10 @@ fun ComposeQuadrant(modifier: Modifier = Modifier) {
             }
             Column(
                 modifier = Modifier
+                    .background(Color(0xFFF6EDFF))
                     .padding(16.dp)
                     .weight(1f)
-                    .fillMaxSize()
-                    .background(Color(0xFFF6EDFF)),
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
