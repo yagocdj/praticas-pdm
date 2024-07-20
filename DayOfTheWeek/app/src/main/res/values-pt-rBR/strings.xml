@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DiaDaSemana</string>
+    <string name="user_input_prompt">Digite o dia da semana como um dígito:</string>
+    <string name="input_label">Dia da semana (1 a 7)</string>
+    <string name="invalid_range_input">Por favor, digite um número de 1 a 7</string>
+</resources>

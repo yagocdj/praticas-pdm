@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DayOfTheWeek</string>
+    <string name="user_input_prompt">Type in the day of the week as a digit:</string>
+    <string name="input_label">Day of the week (1 to 7)</string>
+    <string name="invalid_range_input">Please enter a digit between 1 and 7</string>
+    <string-array name="days_of_week">
+        <item>sunday</item>
+        <item>monday</item>
+        <item>tuesday</item>
+        <item>wednesday</item>
+        <item>thursday</item>
+        <item>friday</item>
+        <item>saturday</item>
+    </string-array>
+</resources>
