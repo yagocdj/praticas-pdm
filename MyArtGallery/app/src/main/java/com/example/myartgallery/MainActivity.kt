@@ -1,7 +1,6 @@
 package com.example.myartgallery
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -31,9 +30,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -61,8 +60,8 @@ fun ArtGallery(modifier: Modifier = Modifier) {
     val paddingInDp = 18.dp
 
     // Each image has its index (starts at 1)
-    var currentImageIndex by remember { mutableIntStateOf(1) }
-    val numberOfImages = 3
+    var currentArtIndex by remember { mutableIntStateOf(1) }
+    val NUMBER_OF_IMAGES = 4
 
     var artworkTitle by remember { mutableStateOf("") }
     var artworkArtist by remember { mutableStateOf("") }
@@ -74,18 +73,20 @@ fun ArtGallery(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ImageArea(
-            currentImageIndex = currentImageIndex
+            currentArtIndex = currentArtIndex
         )
         Spacer(modifier = Modifier.size(18.dp))
-        ArtworkDescription()
+        ArtworkDescription(
+            currentArtIndex = currentArtIndex
+        )
         DisplayController(
             onClickNext = {
-                currentImageIndex =
-                    if (currentImageIndex == numberOfImages) 1 else currentImageIndex + 1
+                currentArtIndex =
+                    if (currentArtIndex == NUMBER_OF_IMAGES) 1 else currentArtIndex + 1
             },
             onClickPrevious = {
-                currentImageIndex =
-                    if (currentImageIndex == 1) numberOfImages else currentImageIndex - 1
+                currentArtIndex =
+                    if (currentArtIndex == 1) NUMBER_OF_IMAGES else currentArtIndex - 1
             }
         )
     }
@@ -94,7 +95,7 @@ fun ArtGallery(modifier: Modifier = Modifier) {
 @Composable
 fun ImageArea(
     modifier: Modifier = Modifier,
-    currentImageIndex: Int
+    currentArtIndex: Int
 ) {
     Surface(
         modifier = modifier
@@ -105,14 +106,18 @@ fun ImageArea(
     ) {
         Image(
             modifier = Modifier.padding(12.dp),
-            painter = painterResource(id = chooseCurrentImage(currentImageIndex)),
-            contentDescription = "Black cat inside of a bed cover."
+            painter = painterResource(id = chooseCurrentImage(currentArtIndex)),
+            contentDescription = stringArrayResource(id = chooseCurrentArtInfo(currentArtIndex))[3]
         )
     }
 }
 
 @Composable
-fun ArtworkDescription(modifier: Modifier = Modifier) {
+fun ArtworkDescription(
+    modifier: Modifier = Modifier,
+    currentArtIndex: Int
+) {
+    val artInfo = stringArrayResource(id = chooseCurrentArtInfo(currentArtIndex))
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -120,13 +125,17 @@ fun ArtworkDescription(modifier: Modifier = Modifier) {
             .padding(vertical = 12.dp, horizontal = 12.dp)
     ) {
         Text(
-            text = "Artwork Title",
+            /*
+             The "[0]" is used to access the first item of the string-array (in this case, the art's
+             title
+            */
+            text = artInfo[0],
             modifier = modifier,
             fontWeight = FontWeight.Thin,
             fontSize = 24.sp
         )
         Text(
-            text = "Artwork Artist (year)",
+            text = "${artInfo[1]} (${artInfo[2]})",
             modifier = modifier,
             style = MaterialTheme.typography.bodyMedium
         )
@@ -164,6 +173,8 @@ fun DisplayController(
 
 /**
  * Selects the image (drawable) to be displayed based on it's index (an integer ID for each drawable)
+ * @param index index of current image
+ * @return the drawable as an integer value
  */
 private fun chooseCurrentImage(index: Int): Int {
     return when (index) {
@@ -172,6 +183,22 @@ private fun chooseCurrentImage(index: Int): Int {
         3 -> R.drawable.dewang_gupta
         4 -> R.drawable.miguel_romero_gonzalez
         else -> R.drawable.tania_malrechauffe
+    }
+}
+
+/**
+ * Selects the information of a piece of art given it's index (an integer ID for each artwork)
+ * @param index index of current artwork
+ * @return the description of that artwork as an array (it can be accessed using
+ * <code>stringArrayResource</code> composable)
+ */
+private fun chooseCurrentArtInfo(index: Int): Int {
+    return when (index) {
+        1 -> R.array.art_bruno_thethe
+        2 -> R.array.art_eduardo_gorghetto
+        3 -> R.array.art_dewang_gupta
+        4 -> R.array.art_miguel_romero_gonzalez
+        else -> R.array.art_tania_malrechauffe
     }
 }
 

@@ -9,4 +9,36 @@
     item 4 - description (accessibility)
     -->
 
+    <string-array name="art_bruno_thethe">
+        <item>A little black kitty</item>
+        <item>Bruno Thethe</item>
+        <item>2024</item>
+        <item>A black cat looking for somewhere with a cloudy sky on the background.</item>
+    </string-array>
+    <string-array name="art_eduardo_gorghetto">
+        <item>Black power and beauty</item>
+        <item>Eduardo Gorghetto</item>
+        <item>2023</item>
+        <item>An afro-american woman using a black shirt and holding a plant with
+            her eyes closed with a red background.</item>
+    </string-array>
+    <string-array name="art_dewang_gupta">
+        <item>The shades of a sunset</item>
+        <item>Dewang Gupta</item>
+        <item>2020</item>
+        <item>An orange sunset with clouds in the sky.</item>
+    </string-array>
+    <string-array name="art_miguel_romero_gonzalez">
+        <item>Rocks and adventures</item>
+        <item>Miguel Romero Gonzalez</item>
+        <item>2021</item>
+        <item>Some little mountains with rocks and bushes on them with the
+            sunset as a background.</item>
+    </string-array>
+    <string-array name="art_tania_malrechauffe">
+        <item>Snow void and a tree</item>
+        <item>Tania Malrechauffe</item>
+        <item>2024</item>
+        <item>A misty, snowy hill with one tree on it.</item>
+    </string-array>
 </resources>
