@@ -56,7 +56,8 @@ fun ArtGallery(modifier: Modifier = Modifier) {
     Column(
         Modifier
             .fillMaxSize()
-            .padding(top = 18.dp)
+            .padding(top = 18.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ImageArea()
         ArtworkDescription()
@@ -116,7 +117,7 @@ fun DisplayController(modifier: Modifier = Modifier) {
     Row(
         modifier = Modifier
             .fillMaxSize()
-            .padding(bottom = 18.dp),
+            .padding(bottom = 24.dp),
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.Bottom
     ) {
