@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MyArtGallery</string>
+
+    <!--
+    String arrays' description
+    item 1 - Artwork title
+    item 2 - Artwork artist
+    item 3 - Year
+    item 4 - description (accessibility)
+    -->
+
 </resources>
