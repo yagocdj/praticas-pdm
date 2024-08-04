@@ -191,7 +191,10 @@ fun MyAppBottomAppBar(
         containerColor = containerColor,
         contentColor = contentColor,
     ) {
-        Row(modifier = modifier, horizontalArrangement = Arrangement.Center) {
+        Row(
+            modifier = modifier,
+            horizontalArrangement = Arrangement.Center
+        ) {
             IconButtonWithText(
                 onClick = { /*TODO - action to add a comment for the development team*/ },
                 contentDescription = "Send some feedback to the app developers",
@@ -249,8 +252,10 @@ fun CardNotification(modifier: Modifier = Modifier) {
                 buildAnnotatedString {
                     append("Welcome to ")
                     withStyle(
-                        style = SpanStyle(fontWeight = FontWeight.Bold,
-                            color = colorResource(id = R.color.whatsapp_green))
+                        style = SpanStyle(
+                            fontWeight = FontWeight.Bold,
+                            color = colorResource(id = R.color.whatsapp_green)
+                        )
                     ) {
                         append("WhatsApp 2 release app")
                     }
