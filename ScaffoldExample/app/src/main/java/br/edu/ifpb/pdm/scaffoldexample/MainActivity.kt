@@ -1,5 +1,6 @@
 package br.edu.ifpb.pdm.scaffoldexample
 
+import android.graphics.drawable.shapes.RoundRectShape
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,18 +13,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -52,6 +62,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.edu.ifpb.pdm.scaffoldexample.ui.theme.LighterGreen
 import br.edu.ifpb.pdm.scaffoldexample.ui.theme.ScaffoldExampleTheme
 import br.edu.ifpb.pdm.scaffoldexample.ui.theme.WhatsAppGreen
 
@@ -80,7 +91,7 @@ fun MyApp(modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxWidth(),
                 containerColor = colorResource(id = R.color.whatsapp_green),
                 contentColor = colorResource(id = R.color.white),
-                text = "See you soon ;)"
+                text = "Feedback"
             )
         },
         floatingActionButton = {
@@ -94,6 +105,7 @@ fun MyApp(modifier: Modifier = Modifier) {
         }
     ) { innerPadding ->
         // Main content
+        CardNotification(modifier = Modifier.padding(innerPadding))
         Column(
             modifier = Modifier
                 .padding(innerPadding)
@@ -148,8 +160,16 @@ fun MyAppTopAppBar(
         title = {
             Text(text = title, fontWeight = FontWeight.Bold)
         },
-        navigationIcon = {
-            IconButton(onClick = { /* TODO - display a calendar with the release date */ }) {
+        actions = {
+            IconButton(
+                onClick = { /* TODO - display a calendar with the release date */ },
+                colors = IconButtonColors(
+                    contentColor = colorResource(id = R.color.white),
+                    containerColor = colorResource(id = R.color.darker_green),
+                    disabledContentColor = colorResource(id = R.color.white),
+                    disabledContainerColor = colorResource(id = R.color.white)
+                )
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.calendar_add_on),
                     contentDescription = "Add a reminder for the release date."
@@ -173,10 +193,10 @@ fun MyAppBottomAppBar(
     ) {
         Row(modifier = modifier, horizontalArrangement = Arrangement.Center) {
             IconButtonWithText(
-                onClick = { /*TODO - add a comment for the development team*/ },
+                onClick = { /*TODO - action to add a comment for the development team*/ },
                 contentDescription = "Send some feedback to the app developers",
                 icon = painterResource(id = R.drawable.add_comment),
-                buttonText = "Talk to us"
+                buttonText = text
             )
         }
     }
@@ -191,7 +211,13 @@ fun IconButtonWithText(
 ) {
     ElevatedButton(
         onClick = onClick,
-        shape =
+        shape = RoundedCornerShape(20.dp),
+        colors = ButtonColors(
+            containerColor = colorResource(id = R.color.darker_green),
+            contentColor = colorResource(id = R.color.white),
+            disabledContainerColor = colorResource(id = R.color.white),
+            disabledContentColor = colorResource(id = R.color.white)
+        )
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
@@ -199,6 +225,38 @@ fun IconButtonWithText(
             Icon(painter = icon, contentDescription = contentDescription)
             Spacer(modifier = Modifier.size(4.dp))
             Text(text = buttonText)
+        }
+    }
+}
+
+// This card was made using this reference: https://foso.github.io/Jetpack-Compose-Playground/material/card/
+@Composable
+fun CardNotification(modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(15.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+        colors = CardColors(
+            containerColor = colorResource(id = R.color.darker_green),
+            contentColor = colorResource(id = R.color.white),
+            disabledContainerColor = colorResource(id = R.color.white),
+            disabledContentColor = colorResource(id = R.color.white)
+        )
+    ) {
+        Column(modifier = Modifier.padding(15.dp)) {
+            Text(
+                buildAnnotatedString {
+                    append("Welcome to ")
+                    withStyle(
+                        style = SpanStyle(fontWeight = FontWeight.Bold,
+                            color = colorResource(id = R.color.whatsapp_green))
+                    ) {
+                        append("WhatsApp 2 release app")
+                    }
+                    append("!")
+                }
+            )
         }
     }
 }

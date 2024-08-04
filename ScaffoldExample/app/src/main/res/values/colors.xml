@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="whatsapp_green">#FF25D366</color>
+    <color name="lighter_green">#FFDCF8C6</color>
+    <color name="darker_green">#FF075E54</color>
 </resources>
