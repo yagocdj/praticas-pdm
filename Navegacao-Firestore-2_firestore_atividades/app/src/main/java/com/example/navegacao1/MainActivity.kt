@@ -49,6 +49,7 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     val navController = rememberNavController()
 
+                    // Callbacks para mudar o título da tela e navegar para o destino
                     val navigateToLogin: () -> Unit = {
                         tituloDaTela = "Login"
                         navController.navigate("login")
@@ -61,6 +62,7 @@ class MainActivity : ComponentActivity() {
                         tituloDaTela = "Cadastro"
                         navController.navigate("cadastro")
                     }
+
                     NavHost(navController = navController, startDestination = "login") {
                         composable("login") {
                             TelaLogin(
