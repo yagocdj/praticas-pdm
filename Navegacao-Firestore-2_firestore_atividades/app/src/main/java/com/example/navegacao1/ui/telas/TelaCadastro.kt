@@ -33,7 +33,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun TelaCadastro(modifier: Modifier = Modifier, onRegisterClick: () -> Unit) {
+fun TelaCadastro(
+    modifier: Modifier = Modifier,
+    onRegisterClick: () -> Unit,
+    onGoBackClick: () -> Unit
+) {
 
     val context = LocalContext.current
 
@@ -77,6 +81,9 @@ fun TelaCadastro(modifier: Modifier = Modifier, onRegisterClick: () -> Unit) {
             }
         }) {
             Text(text = "Enviar")
+        }
+        Button(onClick = { onGoBackClick() }) {
+            Text(text = "Voltar")
         }
         mensagem?.let {
             LaunchedEffect(it) {

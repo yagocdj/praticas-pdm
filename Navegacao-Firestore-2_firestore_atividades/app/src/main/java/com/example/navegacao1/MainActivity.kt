@@ -13,6 +13,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
@@ -32,37 +36,50 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Navegacao1Theme {
+                var tituloDaTela by remember { mutableStateOf("Login") }
+
                 Scaffold(
                     topBar = {
                         TopAppBar(
-                            title = { Text("Login") },
+                            title = { Text(tituloDaTela) },
                             Modifier.background(MaterialTheme.colorScheme.secondary)
                         )
                     },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     val navController = rememberNavController()
+
+                    val navigateToLogin: () -> Unit = {
+                        tituloDaTela = "Login"
+                        navController.navigate("login")
+                    }
+                    val navigateToMain: () -> Unit = {
+                        tituloDaTela = "Principal"
+                        navController.navigate("principal")
+                    }
+                    val navigateToRegister: () -> Unit = {
+                        tituloDaTela = "Cadastro"
+                        navController.navigate("cadastro")
+                    }
                     NavHost(navController = navController, startDestination = "login") {
                         composable("login") {
-                            TelaLogin(modifier = Modifier.padding(innerPadding), onSigninClick = {
-                                navController.navigate("principal")
-                            }, onRegisterClick = {
-                                navController.navigate("cadastro")
-                            })
+                            TelaLogin(
+                                modifier = Modifier.padding(innerPadding),
+                                onSigninClick = navigateToMain,
+                                onRegisterClick = navigateToRegister
+                            )
                         }
                         composable("principal") {
                             TelaPrincipal(
                                 modifier = Modifier.padding(innerPadding),
-                                onLogoffClick = {
-                                    navController.navigate("login")
-                                })
+                                onLogoffClick = navigateToLogin
+                            )
                         }
                         composable("cadastro") {
                             TelaCadastro(
                                 modifier = Modifier.padding(innerPadding),
-                                onRegisterClick = {
-                                    navController.navigate("login")
-                                })
+                                onRegisterClick = navigateToLogin,
+                                onGoBackClick = navigateToLogin)
                         }
                     }
 
