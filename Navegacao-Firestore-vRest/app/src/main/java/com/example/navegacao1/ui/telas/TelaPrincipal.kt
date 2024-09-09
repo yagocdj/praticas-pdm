@@ -34,7 +34,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -52,8 +51,6 @@ import com.example.navegacao1.model.dados.Usuario
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 import java.net.UnknownHostException
@@ -65,7 +62,6 @@ fun TelaPrincipal(modifier: Modifier = Modifier, onLogoffClick: () -> Unit) {
 
     Column(modifier = modifier.padding(10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text = "Tela Principal")
-//        var usuarios by remember { mutableStateOf<List<Usuario>>(emptyList()) }
         var endereco by remember { mutableStateOf<Endereco>(Endereco()) }
 
         // Campos de um usuário
@@ -78,7 +74,6 @@ fun TelaPrincipal(modifier: Modifier = Modifier, onLogoffClick: () -> Unit) {
 
         // Adicionando os pratos a uma lista mutável (para poder removê-los da tela)
         var usuariosMutaveis = remember { mutableStateListOf<Usuario>() }
-//        usuariosMutaveis.addAll(usuarios)
 
         OutlinedTextField(
             value = nome,
